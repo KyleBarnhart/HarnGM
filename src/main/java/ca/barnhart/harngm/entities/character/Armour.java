@@ -1,18 +1,28 @@
-package ca.barnhart.harngm.entities;
+package ca.barnhart.harngm.entities.character;
 
+import ca.barnhart.harngm.entities.data.ArmourComponent;
+import ca.barnhart.harngm.entities.data.ArmourQuality;
+import ca.barnhart.harngm.entities.data.Material;
 import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Data
 @Entity
 public class Armour {
     @Id @GeneratedValue
     private Integer id;
+
+    @ManyToOne
     private ArmourComponent component;
+
+    @ManyToOne
     private Material material;
+
+    @ManyToOne
     private ArmourQuality quality;
 
     public Armour() {}

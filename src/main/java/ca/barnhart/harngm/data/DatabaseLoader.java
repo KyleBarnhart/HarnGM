@@ -1,9 +1,7 @@
 package ca.barnhart.harngm.data;
 
-import ca.barnhart.harngm.entities.*;
-import ca.barnhart.harngm.entities.Character;
+import ca.barnhart.harngm.entities.data.*;
 import ca.barnhart.harngm.repositories.*;
-import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Sets;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -13,6 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.google.common.collect.ImmutableMap.of;
+import static com.google.common.collect.Sets.newHashSet;
 
 @Component
 public class DatabaseLoader implements CommandLineRunner {
@@ -131,6 +130,295 @@ public class DatabaseLoader implements CommandLineRunner {
         this.armourQualityRepository.save(new ArmourQuality(13, 200, 150));
         this.armourQualityRepository.save(new ArmourQuality(14, 275, 188));
         this.armourQualityRepository.save(new ArmourQuality(15, 375, 288));
+
+        this.armourComponentRepository.save(new ArmourComponent(
+                "cap",
+                "Hat/Cap",
+                "Covers the top of the head.",
+                head,
+                newHashSet(sk),
+                newHashSet(leather)
+        ));
+        this.armourComponentRepository.save(new ArmourComponent(
+                "cowl/sh",
+                "Cowl/Coif (Short)",
+                "A cowl is a large loose hood. A coif is a close fitting cap.",
+                head,
+                newHashSet(sk, nk),
+                newHashSet(cloth, leather, quilt, ring, scale, mail)
+        ));
+        this.armourComponentRepository.save(new ArmourComponent(
+                "cowl/lg",
+                "Cowl/Coif (Long)",
+                "A cowl is a large loose hood. A coif is a close fitting cap.",
+                head,
+                newHashSet(sk, nk, sh),
+                newHashSet(cloth, leather, quilt, ring, scale, mail)
+        ));
+        this.armourComponentRepository.save(new ArmourComponent(
+                "halfhelm",
+                "Halfhelm",
+                "A helmet protecting the skull.",
+                head,
+                newHashSet(sk),
+                newHashSet(kurbul, ring, plate, mail)
+        ));
+        this.armourComponentRepository.save(new ArmourComponent(
+                "greathelm",
+                "Great Helm",
+                "A helmet protecting the skull, face, and neck.",
+                head,
+                newHashSet(sk, fa, nk),
+                newHashSet(plate)
+        ));
+        this.armourComponentRepository.save(new ArmourComponent(
+                "gorget",
+                "Gorget",
+                "Protects neck.",
+                head,
+                newHashSet(nk),
+                newHashSet(plate)
+        ));
+        this.armourComponentRepository.save(new ArmourComponent(
+                "vest",
+                "Vest",
+                "A sleeveless shirt to the waist.",
+                torso,
+                newHashSet(sh, tx_ch, tx_bk, ab_ch, ab_bk),
+                newHashSet(cloth)
+        ));
+        this.armourComponentRepository.save(new ArmourComponent(
+                "shirt/sh",
+                "Shirt (Short)",
+                "A short sleeve shirt to the waist.",
+                torso,
+                newHashSet(sh, ua, tx_ch, tx_bk, ab_ch, ab_bk),
+                newHashSet(quilt)
+        ));
+        this.armourComponentRepository.save(new ArmourComponent(
+                "shirt/lg",
+                "Shirt (Long)",
+                "A short sleeve shirt to below the groin.",
+                torso,
+                newHashSet(sh, ua, tx_ch, tx_bk, ab_ch, ab_bk, hp, gr),
+                newHashSet(cloth, ring)
+        ));
+        this.armourComponentRepository.save(new ArmourComponent(
+                "shirt/sleeve",
+                "Shirt w/Sleeve",
+                "A long sleeve shirt to below the groin.",
+                torso,
+                newHashSet(sh, ua, el, fo, tx_ch, tx_bk, ab_ch, ab_bk, hp, gr),
+                newHashSet(cloth)
+        ));
+        this.armourComponentRepository.save(new ArmourComponent(
+                "tunic",
+                "Tunic",
+                "A short sleeve shirt to above the knees.",
+                torso,
+                newHashSet(sh, ua, tx_ch, tx_bk, ab_ch, ab_bk, hp, gr, th),
+                newHashSet(cloth, leather, quilt)
+        ));
+        this.armourComponentRepository.save(new ArmourComponent(
+                "smock",
+                "Smock",
+                "A long sleeve shirt to above the knees.",
+                torso,
+                newHashSet(sh, ua, el, fo, tx_ch, tx_bk, ab_ch, ab_bk, hp, gr, th),
+                newHashSet(cloth, quilt)
+        ));
+        this.armourComponentRepository.save(new ArmourComponent(
+                "surcoat",
+                "Surcoat",
+                "A sleeveless shirt to below the knees.",
+                torso,
+                newHashSet(sh, tx_ch, tx_bk, ab_ch, ab_bk, hp, gr, th, kn),
+                newHashSet(cloth, quilt)
+        ));
+        this.armourComponentRepository.save(new ArmourComponent(
+                "robe",
+                "Robe",
+                "A long sleeve shirt to above the feet.",
+                torso,
+                newHashSet(sh, ua, el, fo, tx_ch, tx_bk, ab_ch, ab_bk, hp, gr, th, kn, cf),
+                newHashSet(cloth)
+        ));
+        this.armourComponentRepository.save(new ArmourComponent(
+                "gambeson",
+                "Gambeson",
+                "A padded short sleeve jacket to above the knees.",
+                torso,
+                newHashSet(sh, ua, tx_ch, tx_bk, ab_ch, ab_bk, hp, gr, th),
+                newHashSet(quilt)
+        ));
+        this.armourComponentRepository.save(new ArmourComponent(
+                "habergeon",
+                "Habergeon",
+                "A sleeveless coat of mail to below the groin.",
+                torso,
+                newHashSet(sh, ua, tx_ch, tx_bk, ab_ch, ab_bk, hp, gr),
+                newHashSet(scale, mail)
+        ));
+        this.armourComponentRepository.save(new ArmourComponent(
+                "hauberk/sh",
+                "Hauberk (Short)",
+                "A short sleeve coat of mail to above the knees",
+                torso,
+                newHashSet(sh, ua, tx_ch, tx_bk, ab_ch, ab_bk, hp, gr, th),
+                newHashSet(ring, scale, mail)
+        ));
+        this.armourComponentRepository.save(new ArmourComponent(
+                "hauberk/lg",
+                "Hauberk (Long)",
+                "A short sleeve coat of mail to below at the knees",
+                torso,
+                newHashSet(sh, ua, tx_ch, tx_bk, ab_ch, ab_bk, hp, gr, th, kn),
+                newHashSet(ring, scale, mail)
+        ));
+        this.armourComponentRepository.save(new ArmourComponent(
+                "breastplate",
+                "Breastplate",
+                "Plate covering the chest.",
+                torso,
+                newHashSet(tx_ch, ab_ch),
+                newHashSet(kurbul, plate)
+        ));
+        this.armourComponentRepository.save(new ArmourComponent(
+                "cuirass",
+                "Cuirass",
+                "Plate covering the torso.",
+                torso,
+                newHashSet(tx_ch, tx_bk, ab_ch, ab_bk),
+                newHashSet(kurbul, plate)
+        ));
+        this.armourComponentRepository.save(new ArmourComponent(
+                "ailettes",
+                "Ailettes",
+                "Flat shoulder cover.",
+                arms,
+                newHashSet(sh),
+                newHashSet(kurbul, plate)
+        ));
+        this.armourComponentRepository.save(new ArmourComponent(
+                "rerebraces",
+                "Rerebraces",
+                "Protects upper arms.",
+                arms,
+                newHashSet(ua),
+                newHashSet(kurbul, plate)
+        ));
+        this.armourComponentRepository.save(new ArmourComponent(
+                "coudes",
+                "Coudes",
+                "Protects elbow.",
+                arms,
+                newHashSet(el),
+                newHashSet(kurbul, plate)
+        ));
+        this.armourComponentRepository.save(new ArmourComponent(
+                "vambraces",
+                "Vambraces",
+                "Protects forearms.",
+                arms,
+                newHashSet(fo),
+                newHashSet(leather, kurbul, plate)
+        ));
+        this.armourComponentRepository.save(new ArmourComponent(
+                "gauntlets",
+                "Gauntlets",
+                "Gloves.",
+                arms,
+                newHashSet(ha),
+                newHashSet(leather, ring, mail)
+        ));
+        this.armourComponentRepository.save(new ArmourComponent(
+                "mittens",
+                "Mittens",
+                "Mittens.",
+                arms,
+                newHashSet(ha),
+                newHashSet(mail)
+        ));
+        this.armourComponentRepository.save(new ArmourComponent(
+                "breeches",
+                "Breeches",
+                "Pants from waist to the knees.",
+                legs,
+                newHashSet(hp, gr, th, kn),
+                newHashSet(cloth, leather)
+        ));
+        this.armourComponentRepository.save(new ArmourComponent(
+                "hose",
+                "Hose/Trousers",
+                "Pants from waist to ankles.",
+                legs,
+                newHashSet(hp, gr, th, kn, cf),
+                newHashSet(cloth, leather, quilt)
+        ));
+        this.armourComponentRepository.save(new ArmourComponent(
+                "leggings",
+                "Leggings",
+                "Covers upper legs and feet.",
+                legs,
+                newHashSet(th, kn, cf, ft),
+                newHashSet(cloth, leather, quilt, ring, scale, mail)
+        ));
+        this.armourComponentRepository.save(new ArmourComponent(
+                "kneecops",
+                "Kneecops",
+                "Protects knees.",
+                legs,
+                newHashSet(kn),
+                newHashSet(kurbul, plate)
+        ));
+        this.armourComponentRepository.save(new ArmourComponent(
+                "calvesswaddle",
+                "Calves Swaddle",
+                "Protects calves.",
+                legs,
+                newHashSet(cf),
+                newHashSet(cloth)
+        ));
+        this.armourComponentRepository.save(new ArmourComponent(
+                "greaves",
+                "Greaves",
+                "Protects calves.",
+                legs,
+                newHashSet(cf),
+                newHashSet(kurbul, plate)
+        ));
+        this.armourComponentRepository.save(new ArmourComponent(
+                "kneeboots",
+                "Knee Boots",
+                "Protects knees, calves, and feet.",
+                legs,
+                newHashSet(kn, cf, ft),
+                newHashSet(leather)
+        ));
+        this.armourComponentRepository.save(new ArmourComponent(
+                "footswaddle",
+                "Foot Swaddle",
+                "Protects calves and feet.",
+                legs,
+                newHashSet(cf, ft),
+                newHashSet(cloth)
+        ));
+        this.armourComponentRepository.save(new ArmourComponent(
+                "calfboots",
+                "Calf Boots",
+                "Protects calves and feet.",
+                legs,
+                newHashSet(cf, ft),
+                newHashSet(leather)
+        ));
+        this.armourComponentRepository.save(new ArmourComponent(
+                "shoes",
+                "Shoes",
+                "Protects feet.",
+                legs,
+                newHashSet(ft),
+                newHashSet(leather)
+        ));
     }
 
     private Map<Aspect, Integer> getProtectiveValues(int bVal, int eVal, int pVal, int fVal, int tVal, int sVal) {

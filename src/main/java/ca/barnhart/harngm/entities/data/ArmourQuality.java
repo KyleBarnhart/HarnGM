@@ -1,4 +1,4 @@
-package ca.barnhart.harngm.entities;
+package ca.barnhart.harngm.entities.data;
 
 import lombok.Data;
 
@@ -10,7 +10,9 @@ import javax.persistence.Id;
 public class ArmourQuality {
     @Id
     private Integer quality;
+
     private Integer percentChangePrice;
+
     private Integer percentChangeWeight;
 
     public ArmourQuality() {}

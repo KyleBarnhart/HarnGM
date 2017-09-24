@@ -1,20 +1,25 @@
-package ca.barnhart.harngm.entities;
+package ca.barnhart.harngm.entities.data;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Map;
-import java.util.Set;
 
 @Data
 @Entity
 public class Material {
     @Id
+    @Column(length = 16)
     private String keyword;
+
     private String name;
+
+    @ElementCollection(targetClass = Integer.class)
+    @MapKeyClass(Aspect.class)
     private Map<Aspect, Integer> aspectValues;
+
     private Integer weight;
+
     private Integer price;
 
     public Material() {}

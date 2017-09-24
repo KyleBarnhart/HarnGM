@@ -1,20 +1,28 @@
-package ca.barnhart.harngm.entities;
+package ca.barnhart.harngm.entities.data;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Set;
 
 @Data
 @Entity
 public class ArmourComponent {
     @Id
+    @Column(length = 16)
     private String keyword;
+
     private String name;
+
     private String description;
+
+    @ManyToOne
     private BodyPartCategory category;
+
+    @ManyToMany
     private Set<BodyPart> bodyParts;
+
+    @ManyToMany
     private Set<Material> materials;
 
     public ArmourComponent() {}
