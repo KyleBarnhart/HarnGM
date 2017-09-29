@@ -1,4 +1,4 @@
-package ca.barnhart.harngm.repositories;
+package ca.barnhart.harngm.repositories.character;
 
 import ca.barnhart.harngm.entities.character.Armour;
 import org.springframework.data.repository.CrudRepository;

@@ -1,10 +1,14 @@
-package ca.barnhart.harngm.data;
+package ca.barnhart.harngm;
 
+import ca.barnhart.harngm.entities.Player;
 import ca.barnhart.harngm.entities.data.*;
-import ca.barnhart.harngm.repositories.*;
-import com.google.common.collect.Sets;
+import ca.barnhart.harngm.repositories.PlayerRepository;
+import ca.barnhart.harngm.repositories.data.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -15,6 +19,7 @@ import static com.google.common.collect.Sets.newHashSet;
 
 @Component
 public class DatabaseLoader implements CommandLineRunner {
+    private final PlayerRepository playerRepository;
     private final ArmourQualityRepository armourQualityRepository;
     private final ArmourComponentRepository armourComponentRepository;
     private final AspectRepository aspectRepository;
@@ -31,6 +36,7 @@ public class DatabaseLoader implements CommandLineRunner {
 
     @Autowired
     public DatabaseLoader(
+            PlayerRepository playerRepository,
             ArmourQualityRepository armourQualityRepository,
             ArmourComponentRepository armourComponentRepository,
             AspectRepository aspectRepository,
@@ -38,6 +44,7 @@ public class DatabaseLoader implements CommandLineRunner {
             BodyPartCategoryRepository bodyPartCategoryRepository,
             MaterialRepository materialRepository
     ) {
+        this.playerRepository = playerRepository;
         this.armourQualityRepository = armourQualityRepository;
         this.armourComponentRepository = armourComponentRepository;
         this.aspectRepository = aspectRepository;
@@ -48,6 +55,12 @@ public class DatabaseLoader implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
+        Player kyle = this.playerRepository.save(new Player("kyle", "badeels", "ROLE_ADMIN", "ROLE_PLAYER"));
+
+        SecurityContextHolder.getContext().setAuthentication(
+                new UsernamePasswordAuthenticationToken("kyle", "doesn't matter",
+                        AuthorityUtils.createAuthorityList("ROLE_ADMIN", "ROLE_MANAGER")));
+
         this.aspectRepository.save(b);
         this.aspectRepository.save(e);
         this.aspectRepository.save(p);

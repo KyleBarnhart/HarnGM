@@ -1,25 +1,34 @@
 package ca.barnhart.harngm.entities.character;
 
+import ca.barnhart.harngm.entities.Player;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import java.util.Set;
+import javax.persistence.*;
 
 @Data
 @Entity
 public class Character {
-    private @Id @GeneratedValue Integer id;
+    @Id
+    @GeneratedValue
+    private Integer id;
+
     private String name;
 
-    @OneToMany
-    private Set<Armour> armour;
+    @ManyToOne
+    private Player player;
+
+//    @OneToMany
+//    private Set<Armour> armour;
+
+    @Version
+    @JsonIgnore
+    private Long version;
 
     private Character() {}
 
-    public Character(String name) {
+    public Character(String name, Player player) {
         this.name = name;
+        this.player = player;
     }
 }

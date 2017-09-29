@@ -1,3 +1,4 @@
+// https://github.com/spring-guides/tut-react-and-spring-data-rest/blob/master/hypermedia/src/main/js/follow.js
 module.exports = function follow(api, rootPath, relArray) {
     var root = api({
         method: 'GET',

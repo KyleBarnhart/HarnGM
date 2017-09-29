@@ -3,17 +3,16 @@ package ca.barnhart.harngm.entities.character;
 import ca.barnhart.harngm.entities.data.ArmourComponent;
 import ca.barnhart.harngm.entities.data.ArmourQuality;
 import ca.barnhart.harngm.entities.data.Material;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Data
 @Entity
 public class Armour {
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private Integer id;
 
     @ManyToOne
@@ -24,6 +23,10 @@ public class Armour {
 
     @ManyToOne
     private ArmourQuality quality;
+
+    @Version
+    @JsonIgnore
+    private Long version;
 
     public Armour() {}
 
