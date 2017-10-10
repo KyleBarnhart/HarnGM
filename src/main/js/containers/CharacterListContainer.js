@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { addCharacter, deleteCharacter } from '../actions';
+import { fetchCharacters, addCharacter, deleteCharacter } from '../actions';
 import CharacterList from '../components/CharacterList';
 
 const mapStateToProps = state => {

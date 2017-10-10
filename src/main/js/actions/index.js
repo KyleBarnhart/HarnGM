@@ -1,13 +1,22 @@
-export const addCharacter = character => {
+import * as types from './actionTypes';
+
+export const characterFetchSuccess = characters => {
     return {
-        type: 'ADD_CHARACTER',
+        type: types.CHARACTERS.FETCH.SUCCESS,
+        payload: characters
+    }
+};
+
+export const addCharacterSuccess = character => {
+    return {
+        type: types.CHARACTERS.UPDATE.SUCCESS,
         payload: character
     }
 };
 
-export const deleteCharacter = character => {
+export const deleteCharacterSuccess = character => {
     return {
-        type: 'DELETE_CHARACTER',
+        type: types.CHARACTERS.DELETE.SUCCESS,
         payload: character
     }
 };

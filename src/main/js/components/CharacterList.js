@@ -10,18 +10,14 @@ const CharacterList = ({ characters }) => (
                 <th>Name</th>
                 <th>Player Name</th>
             </tr>
-            {characters.map(character => <Character character={character}/>)}
+            {characters.map(character => <Character key={character.id} character={character}/>)}
             </tbody>
         </table>
     </div>
 );
 
 CharacterList.propTypes = {
-    characters: PropTypes.arrayOf(
-        PropTypes.shape({
-            character: PropTypes.object.isRequired
-        }).isRequired
-    ).isRequired
+    characters: PropTypes.array.isRequired
 };
 
 export default CharacterList

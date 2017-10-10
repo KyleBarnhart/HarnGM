@@ -1,8 +1,10 @@
 package ca.barnhart.harngm;
 
 import ca.barnhart.harngm.entities.Player;
+import ca.barnhart.harngm.entities.character.Character;
 import ca.barnhart.harngm.entities.data.*;
 import ca.barnhart.harngm.repositories.PlayerRepository;
+import ca.barnhart.harngm.repositories.character.CharacterRepository;
 import ca.barnhart.harngm.repositories.data.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -27,6 +29,8 @@ public class DatabaseLoader implements CommandLineRunner {
     private final BodyPartCategoryRepository bodyPartCategoryRepository;
     private final MaterialRepository materialRepository;
 
+    private final CharacterRepository characterRepository;
+
     private Aspect b = new Aspect("b", "Blunt");
     private Aspect e = new Aspect("e", "Edge");
     private Aspect p = new Aspect("p", "Point");
@@ -42,7 +46,8 @@ public class DatabaseLoader implements CommandLineRunner {
             AspectRepository aspectRepository,
             BodyPartRepository bodyPartRepository,
             BodyPartCategoryRepository bodyPartCategoryRepository,
-            MaterialRepository materialRepository
+            MaterialRepository materialRepository,
+            CharacterRepository characterRepository
     ) {
         this.playerRepository = playerRepository;
         this.armourQualityRepository = armourQualityRepository;
@@ -51,6 +56,7 @@ public class DatabaseLoader implements CommandLineRunner {
         this.bodyPartRepository = bodyPartRepository;
         this.bodyPartCategoryRepository = bodyPartCategoryRepository;
         this.materialRepository = materialRepository;
+        this.characterRepository = characterRepository;
     }
 
     @Override
@@ -60,6 +66,8 @@ public class DatabaseLoader implements CommandLineRunner {
         SecurityContextHolder.getContext().setAuthentication(
                 new UsernamePasswordAuthenticationToken("kyle", "doesn't matter",
                         AuthorityUtils.createAuthorityList("ROLE_ADMIN", "ROLE_MANAGER")));
+
+        this.characterRepository.save(new Character("Otto", kyle));
 
         this.aspectRepository.save(b);
         this.aspectRepository.save(e);

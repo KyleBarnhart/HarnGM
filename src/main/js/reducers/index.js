@@ -1,8 +1,6 @@
 import { combineReducers } from 'redux';
 import characters from './characters';
 
-const characterApp = combineReducers({
+export default combineReducers({
     characters
 });
-
-export default characterApp

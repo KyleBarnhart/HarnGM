@@ -1,15 +1,12 @@
+import * as types from '../actions/actionTypes';
+
 const characters = (state = [], action) => {
     switch (action.type) {
-        case 'ADD_CHARACTER':
-            return [
-                ...state,
-                action.payload
-            ];
-        case 'DELETE_CHARACTER':
-            return state.filter(item => action.payload !== item);
+        case types.CHARACTERS.FETCH.SUCCESS:
+            return action.payload;
         default:
-            return state
+            return state;
     }
 };
 
-export default characters
+export default characters;
